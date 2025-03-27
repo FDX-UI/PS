@@ -1,29 +1,58 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Power Shell 基础语法表</title>
 <link rel="icon"href="https://learn.microsoft.com/zh-cn/powershell/media/index/ps_black_128.svg"type="image/svg+xml">
 <style>
-    body{
-      background-color:black;
-      color:white;
-      font-family:Arial, sans-serif;
-    }
-    table{
-      border-color:white;
-    }
-    table td,table th{
-      background-color:#333;
+    /* 默认样式 */
+    body {
+      background-color: black;
       color: white;
-      border:1px solid rgb(0, 0, 0);
+      font-family: Arial, sans-serif;
+      font-size:16px;
     }
-    h1,p,b{
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+      display: block;
+    }
+    table td, table th {
+      background-color:#333;
       color:white;
+      border:1px solid rgb(0, 0, 0);
+      padding:8px;
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      body{
+        font-size: 18px;
+      }
+      table td,table th{
+        font-size: 18px;
+      }
+    }
+    @media (max-width: 400px) {
+      body{
+        font-size: 20px;
+      }
+      table td, table th {
+        font-size: 20px;
+      }
     }
     #fixedButton{
-    position:fixed;
-    bottom:10px;
-    right:10px;
+      position:fixed;
+      bottom:10px;
+      right:10px;
+      padding:10px 20px;
+      font-size:16px;
+    }
+    @media (max-width:600px) {
+      #fixedButton{
+        padding:8px 16px;
+        font-size:18px;
+      }
     }
   </style>
 </head>
