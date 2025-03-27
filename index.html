@@ -1,1 +1,669 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Power Shell 基础语法表</title>
+<link rel="icon"href="https://learn.microsoft.com/zh-cn/powershell/media/index/ps_black_128.svg"type="image/svg+xml">
+<style>
+    body{
+      background-color:black;
+      color:white;
+      font-family:Arial, sans-serif;
+    }
+    table{
+      border-color:white;
+    }
+    table td,table th{
+      background-color:#333;
+      color: white;
+      border:1px solid rgb(0, 0, 0);
+    }
+    h1,p,b{
+      color:white;
+    }
+    #fixedButton{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Power Shell 基础语法表 (支持cmd指令)</h1>
+<p style="font-size:20px;">这个应该是你见过的最详细的Power Shell基础语法表 对吗?<br>我花了几天做出来的目前为止仍有很多地方需要完善<br>注意这并不是入门教程<br>作者:glthub</p>
+<b style="font-size:30px;">1. 基本概念</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>术语</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>命令行</td>
+        <td>在 PowerShell 中输入命令的地方</td>
+    </tr>
+    <rt>
+        <td>命令</td>
+        <td>执行特定操作的语句，如 Get-Process</td>
+    </rt>
+    <tr>
+        <td>参数</td>
+        <td>命令的附加选项，通常以 - 开头，如 -Name</td>
+    </tr>
+    <tr>
+        <td>参数值</td>
+        <td>参数的具体值，如 -Name "notepad"</td>
+    </tr>
+    <tr>
+        <td>别名/简写</td>
+        <td>命令的简写形式，如 ls 是 Get-ChildItem 的别名</td>
+    </tr>
+    <tr>
+        <td>对象</td>
+        <td>PowerShell 中的数据结构，命令的输出通常是一个对象</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">2. 常用命令</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>命令</td>
+        <td>功能</td>
+        <td>常用参数</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>Get-Command</td>
+        <td>列出所有可用命令或按名称、模块等过滤命令</td>
+        <td>-Name <名称>、-Module <模块名></td>
+        <td>Get-Command -Name Get-*</td>
+    </tr>
+    <tr>
+        <td>Get-Help</td>
+        <td>获取命令的帮助信息，支持详细帮助、示例等</td>
+        <td>-Name <命令>、-Detailed、-Examples	</td>
+        <td>Get-Help Get-Process -Detailed</td>
+    </tr>
+    <tr>
+        <td>Get-Process</td>
+        <td>获取系统进程</td>
+        <td>-Name <进程名></td>
+        <td>Get-Process -Name notepad</td>
+    </tr>
+    <tr>
+        <td>Stop-Process</td>
+        <td>终止进程</td>
+        <td>-Id <进程ID></td>
+        <td>Stop-Process -Id 1234</td>
+    </tr>
+    <tr>
+        <td>Get-Service</td>
+        <td>获取系统服务</td>
+        <td>-Name <服务名></td>
+        <td>Get-Service -Name Spooler</td>
+    </tr>
+    <tr>
+        <td>Start-Service</td>
+        <td>启动服务</td>
+        <td>-Name <服务名></td>
+        <td>Start-Service -Name Spooler</td>
+    </tr>
+    <tr>
+        <td>Stop-Service</td>
+        <td>停止服务</td>
+        <td>-Name <服务名></td>
+        <td>Stop-Service -Name Spooler</td>
+    </tr>
+    <tr>
+        <td>Get-ChildItem</td>
+        <td>列出目录内容</td>
+        <td>-Path <路径>、-Recurse</td>
+        <td>Get-ChildItem -Path C:\ -Recurse</td>
+    </tr>
+    <tr>
+        <td>Copy-Item</td>
+        <td>复制文件或目录</td>
+        <td>-Path <源路径>、-Destination <目标路径></td>
+        <td>Copy-Item -Path C:\source.txt -Destination C:\destination.txt</td>
+    </tr>
+    <tr>
+        <td>Remove-Item</td>
+        <td>删除文件或目录</td>
+        <td>-Path <路径>、-Recurse</td>
+        <td>Remove-Item -Path C:\OldFolder -Recurse</td>
+    </tr>
+    <tr>
+        <td>Rename-Item</td>
+        <td>重命名文件或目录</td>
+        <td>-Path <路径>、-NewName <新名称></td>
+        <td>Rename-Item -Path C:\OldName.txt -NewName NewName.txt</td>
+    </tr>
+    <tr>
+        <td>Set-Location</td>
+        <td>切换目录</td>
+        <td>-Path <路径></td>
+        <td>Set-Location -Path C:\Users</td>
+    </tr>
+    <tr>
+        <td>New-Item</td>
+        <td>创建文件或目录</td>
+        <td>-ItemType <类型>、-Path <路径>、-Name <名称></td>
+        <td>New-Item -ItemType Directory -Path C:\ -Name NewFolder</td>
+    </tr>
+    <tr>
+        <td>Invoke-WebRequest</td>
+        <td>发送 HTTP 请求</td>
+        <td>-Uri <URL>、-Method <方法></td>
+        <td>Invoke-WebRequest -Uri https://www.example.com</td>
+    </tr>
+    <tr>
+        <td>Get-Content</td>
+        <td>读取文件内容</td>
+        <td>-Path <路径></td>
+        <td>Get-Content -Path C:\file.txt</td>
+    </tr>
+    <tr>
+        <td>Set-Content</td>
+        <td>写入内容到文件</td>
+        <td>-Path <路径>、-Value <内容></td>
+        <td>Set-Content -Path C:\file.txt -Value "Hello, World!"</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">3. 输出/输入</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>命令</td>
+        <td>功能</td>
+        <td>常用参数</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>Write-Output</td>
+        <td>将内容输出到控制台或管道</td>
+        <td>-InputObject <对象></td>
+        <td>Write-Output "Hello, World!"</td>
+    </tr>
+    <tr>
+        <td>Write-Host</td>
+        <td>将内容输出到控制台，支持颜色等格式化</td>
+        <td>-ForegroundColor <颜色>、-BackgroundColor <颜色></td>
+        <td>Write-Host "Hello, World!" -ForegroundColor Green</td>
+    </tr>
+    <tr>
+        <td>Out-File</td>
+        <td>将输出保存到文件</td>
+        <td>-FilePath <路径>、-Append</td>
+        <td>Out-File -FilePath C:\processes.txt</td>
+    </tr>
+    <tr>
+        <td>Out-Null</td>
+        <td>将输出丢弃，不显示在控制台</td>
+        <td>暂无</td>
+        <td>Out-Null</td>
+    </tr>
+    <tr>
+        <td>Read-Host</td>
+        <td>从用户获取输入</td>
+        <td>-Prompt <提示信息></td>
+        <td>$name = Read-Host "请输入您的名字"</td>
+    </tr>
+    <tr>
+        <td>Get-Content</td>
+        <td>从文件读取内容</td>
+        <td>-Path <路径>、-First <行数>、-Last <行数></td>
+        <td>Get-Content -Path C:\file.txt</td>
+    </tr>
+    <tr>
+        <td>Set-Content</td>
+        <td>将内容写入到文件</td>
+        <td>-Path <路径>、-Value <内容></td>
+        <td>Set-Content -Path C:\file.txt -Value "Hello, World!"</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">4. 变量</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>语法</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>$variable = value</td>
+        <td>使用变量</td>
+    </tr>
+    <tr>
+        <td>$null</td>
+        <td>表示空值</td>
+    </tr>
+    <tr>
+        <td>$true 和 $false</td>
+        <td>布尔值</td>
+    </tr>
+    <tr>
+        <td>$env:变量名</td>
+        <td>系统环境变量，如 $env:PATH</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">5. 数据类型</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>数据类型</td>
+        <td>别名/简写</td>
+        <td>描述</td>
+        <td>示例</td>
+        <td>类型强制</td>
+    </tr>
+    <tr>
+        <td>String</td>
+        <td>暂无</td>
+        <td>用于存储文本数据</td>
+        <td>$str = "Hello, World!"</td>
+        <td>[String] 变量名</td>
+    </tr>
+    <tr>
+        <td>Integer</td>
+        <td>int</td>
+        <td>用于存储整数</td>
+        <td>$num = 42</td>
+        <td>[Integer] 变量名</td>
+    </tr>
+    <tr>
+        <td>Double</td>
+        <td>暂无</td>
+        <td>用于存储浮点数</td>
+        <td>$float = 3.14</td>
+        <td>[Double] 变量名</td>
+    </tr>
+    <tr>
+        <td>Boolean</td>
+        <td>bool</td>
+        <td>用于存储布尔值</td>
+        <td>$isTrue = $true</td>
+        <td>[Boolean] 变量名</td>
+    </tr>
+    <tr>
+        <td>Array</td>
+        <td>暂无</td>
+        <td>用于存储一组值</td>
+        <td>$array = @(1, 2, 3, "four")</td>
+        <td>[Array] 变量名</td>
+    </tr>
+    <tr>
+        <td>Hashtable</td>
+        <td>暂无</td>
+        <td>用于存储键值对</td>
+        <td>$hash = @{Name = "John"; Age = 30}</td>
+        <td>[Hashtable] 变量名</td>
+    </tr>
+    <tr>
+        <td>DateTime</td>
+        <td>暂无</td>
+        <td>用于存储日期和时间</td>
+        <td>$date = Get-Date</td>
+        <td>[DateTime] 变量名</td>
+    </tr>
+    <tr>
+        <td>Object</td>
+        <td>暂无</td>
+        <td>用于存储复杂数据结构</td>
+        <td>$process = Get-Process</td>
+        <td>[Object] 变量名</td>
+    </tr>
+    <tr>
+        <td>ScriptBlock</td>
+        <td>暂无</td>
+        <td>用于存储代码块</td>
+        <td>$script = { Write-Output "Hello" }</td>
+        <td>[ScriptBlock] 变量名</td>
+    </tr>
+    <tr>
+        <td>Null</td>
+        <td>暂无</td>
+        <td>表示空值</td>
+        <td>$variableName = $null</td>
+        <td>[Null] 变量名</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">6. 运算符+注释</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>(1)算术运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>加法</td>
+        <td>$a + $b</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>减法</td>
+        <td>$a - $b</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>乘法</td>
+        <td>$a * $b</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>除法</td>
+        <td>$a / $b</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>求余</td>
+        <td>$a % $b</td>
+    </tr>
+    <tr>
+        <td>(2)赋值运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>=</td>
+        <td>简单的赋值运算符</td>
+        <td>$a = 10</td>
+    </tr>
+    <tr>
+        <td>+=</td>
+        <td>加法赋值运算符</td>
+        <td>$a += 10</td>
+    </tr>
+    <tr>
+        <td>-=</td>
+        <td>减法赋值运算符</td>
+        <td>$a -= 10</td>
+    </tr>
+    <tr>
+        <td>*=</td>
+        <td>乘法赋值运算符</td>
+        <td>$a *= 10</td>
+    </tr>
+    <tr>
+        <td>/=</td>
+        <td>除法赋值运算符</td>
+        <td>$a /= 10</td>
+    </tr>
+    <tr>
+        <td>(3)比较运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>-eq</td>
+        <td>等于</td>
+        <td>$a -eq $b</td>
+    </tr>
+    <tr>
+        <td>-ne</td>
+        <td>不等于</td>
+        <td>$a -ne $b</td>
+    </tr>
+    <tr>
+        <td>-gt</td>
+        <td>大于</td>
+        <td>$a -gt $b</td>
+    </tr>
+    <tr>
+        <td>-lt</td>
+        <td>小于</td>
+        <td>$a -lt $b</td>
+    </tr>
+    <tr>
+        <td>-ge</td>
+        <td>大于等于</td>
+        <td>$a -ge $b</td>
+    </tr>
+    <tr>
+        <td>-le</td>
+        <td>小于等于</td>
+        <td>$a -le $b</td>
+    </tr>
+    <tr>
+        <td>(4)逻辑运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>-and</td>
+        <td>逻辑与</td>
+        <td>($a -gt 0) -and ($b -lt 10)</td>
+    </tr>
+    <tr>
+        <td>-or</td>
+        <td>逻辑或</td>
+        <td>($a -eq 5) -or ($b -eq 10)</td>
+    </tr>
+    <tr>
+        <td>-not</td>
+        <td>逻辑非</td>
+        <td>-not ($a -eq 0)</td>
+    </tr>
+    <tr>
+        <td>(5)位运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>-band</td>
+        <td>按位与</td>
+        <td>$a = 5 -band 3</td>
+    </tr>
+    <tr>
+        <td>-bor</td>
+        <td>按位或</td>
+        <td>$a = 5 -bor 3</td>
+    </tr>
+    <tr>
+        <td>-bxor</td>
+        <td>按位异或</td>
+        <td>$a = 5 -bxor 3</td>
+    </tr>
+    <tr>
+        <td>-bnot</td>
+        <td>按位取反</td>
+        <td>$a = -bnot 5</td>
+    </tr>
+    <tr>
+        <td>-shl</td>
+        <td>左移</td>
+        <td>$a = 5 -shl 1</td>
+    </tr>
+    <tr>
+        <td>-shr</td>
+        <td>右移</td>
+        <td>$a = 5 -shr 1</td>
+    </tr>
+    <tr>
+        <td>(6)其他运算符</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>..</td>
+        <td>范围运算符</td>
+        <td>1..5 表示从 1 到 5 的整数序列(1, 2, 3, 4, 5)</td>
+    </tr>
+    <tr>
+        <td>|</td>
+        <td>管道运算符</td>
+        <td>Get-Process | Sort-Object -Property CPU,将获取到的进程信息按 CPU 使用率排序</td>
+    </tr>
+    <tr>
+        <td>.</td>
+        <td>成员访问运算符</td>
+        <td>$obj.Name,获取对象 $obj 的 Name 属性</td>
+    </tr>
+    <tr>
 
+        <td>(7)注释</td>
+        <td>描述</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>#</td>
+        <td>单行注释</td>
+        <td># 这是一个单行注释<br>$a = 10 # 这是变量赋值的注释</td>
+    </tr>
+    <tr>
+        <td><# 和 #></td>
+        <td>多行注释</td>
+        <td><#这是一个多行注释<br>可以在这里写很多内容<br>不会被执行<br>#><br>$a = 20</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">7. 流程控制</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>语句类型</td>
+        <td>描述</td>
+        <td>语法结构</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>if</td>
+        <td>根据条件执行特定代码块</td>
+        <td>if (条件) {代码块}<br>elseif (条件) {代码块}<br>else {代码块}</td>
+        <td>if ($num -gt 10) {<br>    Write-Output "num 大于 10"<br>} elseif ($num -eq 10) {<br>    Write-Output "num 等于 10"<br>} else {<br>    Write-Output "num 小于 10"<br>}</td>
+    </tr>
+    <tr>
+        <td>switch</td>
+        <td>根据表达式的值匹配并执行对应的代码块</td>
+        <td>switch (表达式) {<br>    值1 {代码块}<br>    值2 {代码块}<br>    默认 {代码块}<br>}</td>
+        <td>$day = "Monday"<br>switch ($day) {<br>    "Monday" { Write-Output "今天是周一" }<br>    "Tuesday" { Write-Output "今天是周二" }<br>    default { Write-Output "其他日子" }<br>}</td>
+    </tr>
+    <tr>
+        <td>for</td>
+        <td>循环执行代码块，直到条件不满足</td>
+        <td>for (初始化; 条件; 步进) {代码块}</td>
+        <td>for ($i = 1; $i -le 5; $i++) {<br>    Write-Output $i<br>}</td>
+    </tr>
+    <tr>
+        <td>foreach</td>
+        <td>遍历集合中的每个元素并执行代码块</td>
+        <td>foreach ($元素 in $集合) {代码块}</td>
+        <td>$numbers = 1, 2, 3, 4, 5<br>foreach ($number in $numbers) {<br>    Write-Output $number<br>}</td>
+    </tr>
+    <tr>
+        <td>while</td>
+        <td>当条件为真时，循环执行代码块</td>
+        <td>while (条件) {代码块}</td>
+        <td>$i = 1<br>while ($i -le 5) {<br>    Write-Output $i<br>    $i++<br>}</td>
+    </tr>
+    <tr>
+        <td>do</td>
+        <td>循环执行代码块，至少执行一次</td>
+        <td>do {代码块} while (条件)<br>do {代码块} until (条件)</td>
+        <td>$i = 1<br>do {<br>    Write-Output $i<br>    $i++<br>} while ($i -le 5)</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">8. 函数</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>函数类型</td>
+        <td>描述</td>
+        <td>语法结构</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>定义函数</td>
+        <td>创建一个可复用的代码块，用于执行特定任务</td>
+        <td>function 函数名 {<br>    参数定义<br>    函数体<br>}</td>
+        <td>function Add-Numbers {<br>    param ($a, $b)<br>    return $a + $b<br>}</td>
+    </tr>
+    <tr>
+        <td>调用函数</td>
+        <td>执行函数并传递参数</td>
+        <td>函数名 参数</td>
+        <td>$result = Add-Numbers 5 3<br>Write-Output $result</td>
+    </tr>
+    <tr>
+        <td>参数(位置参数)</td>
+        <td>按位置传递参数</td>
+        <td>param ($param1, $param2)</td>
+        <td>function Greet {<br>    param ($name, $greeting)<br>    Write-Output "$greeting, $name!"<br>}<br>Greet -name "Alice" -greeting "Hello"</td>
+    </tr>
+    <tr>
+        <td>默认参数值</td>
+        <td>为参数设置默认值</td>
+        <td>param ($param1 = 默认值)</td>
+        <td>function Greet {<br>    param ($name = "Guest", $greeting = "Hello")<br>    Write-Output "$greeting, $name!"<br>}</td>
+    </tr>
+    <tr>
+        <td>动态参数</td>
+        <td>使用 CmdletBinding 添加动态参数</td>
+        <td>[CmdletBinding()]<br>param (<br>    [Parameter(Mandatory = $true)]<br>    [string]$param1<br>)</td>
+        <td>[CmdletBinding()]<br>param (<br>    [Parameter(Mandatory = $true)]<br>    [string]$name<br>)<br>function Greet {<br>    Write-Output "Hello, $name!"<br>}<br>Greet -name "Alice"</td>
+    </tr>
+    <tr>
+        <td>返回值</td>
+        <td>从函数返回值</td>
+        <td>return 表达式</td>
+        <td>function Multiply-Numbers {<br>    param ($a, $b)<br>    return $a * $b<br>}<br>$result = Multiply-Numbers 4 5<br>Write-Output $result</td>
+    </tr>
+    <tr>
+        <td>函数嵌套</td>
+        <td>在函数内部定义和调用其他函数</td>
+        <td>function 函数名 {<br>    function 内部函数 {<br>        ...<br>    }<br>    ...<br>}</td>
+        <td>function Outer-Function {<br>    function Inner-Function {<br>        Write-Output "Inner function called"<br>    }<br>    Inner-Function<br>}<br>Outer-Function</td>
+    </tr>
+</table>
+<p></p>
+<b style="font-size:30px;">9. 异常处理</b>
+<table border="3" cellspacing="5">
+    <tr>
+        <td>功能</td>
+        <td>描述</td>
+        <td>语法结构</td>
+        <td>示例</td>
+    </tr>
+    <tr>
+        <td>try</td>
+        <td>包含可能会引发异常的代码</td>
+        <td>try {<br>    可能会引发异常的代码<br>}</td>
+        <td>try {<br>    $result = 10 / 0<br>}</td>
+    </tr>
+    <tr>
+        <td>catch</td>
+        <td>捕获并处理异常</td>
+        <td>catch {<br>    处理异常的代码<br>}<br>或<br>catch [异常类型] {<br>    处理特定异常的代码<br>}</td>
+        <td>try {<br>    $result = 10 / 0<br>} catch {<br>    Write-Output "发生错误: $_"<br>}</td>
+    </tr>
+    <tr>
+        <td>finally</td>
+        <td>无论是否发生异常都会执行的代码</td>
+        <td>finally {<br>    无论是否发生异常都会执行的代码<br>}</td>
+        <td>try {<br>    $result = 10 / 0<br>} catch {<br>    Write-Output "发生错误: $_"<br>} finally {<br>    Write-Output "清理资源"<br>}</td>
+    </tr>
+    <tr>
+        <td>throw</td>
+        <td>手动抛出异常</td>
+        <td>throw "错误信息"<br>或<br>throw [异常对象]	</td>
+        <td>if ($x -lt 0) {<br>    throw "x 不能小于 0"<br>}</td>
+    </tr>
+    <tr>
+        <td>捕获特定异常</td>
+        <td>捕获特定类型的异常</td>
+        <td>catch [异常类型] {<br>    处理特定异常的代码<br>}</td>
+        <td>try {<br>    $result = 10 / 0<br>} catch [System.DivideByZeroException] {<br>    Write-Output "发生除以零错误"<br>} catch {<br>    Write-Output "发生其他错误: $_"<br>}</td>
+    </tr>
+    <tr>
+        <td>获取异常详细信息</td>
+        <td>获取捕获的异常对象</td>
+        <td>$_ 或 $Error</td>
+        <td>try {<br>    $result = 10 / 0<br>} catch {<br>    Write-Output "错误信息: $_"<br>    Write-Output "错误类型: $_.GetType().Name"<br>}</td>
+    </tr>
+    <tr>
+        <td>继续执行脚本</td>
+        <td>捕获异常后继续执行脚本</td>
+        <td>try-catch</td>
+        <td>try {<br>    $result = 10 / 0<br>} catch {<br>    Write-Output "发生错误: $_"<br>}<br>Write-Output "脚本继续执行"</td>
+    </tr>
+</table>
+<button id="fixedButton" onclick="alert('压根没做这功能我觉得黑色的更护眼:)')">白昼模式</button>
+</body>
+</html>
