@@ -1,2 +1,2 @@
 # PS
-PowerShell相关的东西
+Power Shell相关的东西
